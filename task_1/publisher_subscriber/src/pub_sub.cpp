@@ -23,9 +23,16 @@ bool createResponce(my_server::calc_roots::Request&  req,
   d = req.b * req.b - 4 * req.c * req.a;
   if (req.a == 0.0) 
   {
-    resp.roots.layout.dim[0].size = 1;
-    resp.roots.layout.dim[0].stride = 1;
-    resp.roots.data.push_back(-1 * req.c / req.b);
+    if (req.b == 0.0)
+    {
+      resp.roots.layout.dim[0].size = 0;
+      resp.roots.layout.dim[0].stride = 0;
+    } else 
+    {
+      resp.roots.layout.dim[0].size = 1;
+      resp.roots.layout.dim[0].stride = 1;
+      resp.roots.data.push_back(-1 * req.c / req.b);
+    }
   } else if (d > 0.0) 
   {
     resp.roots.layout.dim[0].size = 2;
