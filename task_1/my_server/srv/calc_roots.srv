@@ -1,0 +1,6 @@
+float32 a
+float32 b
+float32 c
+---
+std_msgs/Float32MultiArray roots
+
